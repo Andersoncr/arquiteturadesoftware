@@ -30,26 +30,43 @@
 				<h2>Listar Chamados</h2>
 			</div>
 		</div>
-		<form action="#.do" method="post">
-			<div class="row">
-				<div class="form-group col-md-12">
-					<label for="fila">Escolha a Fila:</label> 
-					<select class="form-control" name="fila" id="fila">
-						<option value="novosProjetos">Novos Projetos</option>
-						<option value="manutencaoSistemDdeVendas">Manutenção Sistema de Vendas</option>
-						<option value="manutencaoSistemaERP">Manutenção Sistema ERP</option>
-						<option value="servidores">Servidores</option>
-						<option value="redes">Redes</option>
-						<option value="telefonia">Telefonia</option>
-						<option value="desktops">Desktops</option>
-					</select>
+		<div class='tudo'>
+			<c:if test="${not empty mensagem}">
+						<div class="col-md-12">
+							<div class="alert alert-danger alert-dismissable" style="margin-top: 10px;">							
+								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+								<strong>${mensagem}</strong>
+							</div>
+						</div>
+			</c:if>
+			<!-- Container Principal -->
+			<form action="listar_Chamados.do" method="post" style ="margin-top: 30px">
+				<div class="row col-md-12">
+					<!-- Chamados -->
+					<div class="col-md-12">
+					<label for="areaAtuacao">Escolha a Fila:</label>
+					<div class="input-group col-md-12">
+						<select class="form-control" name="id_Chamado" id="id_Chamado">
+							<!--  <option value=off selected disabled>Selecione</option> -->
+							<option value="novosProjetos">Novos Projetos</option>
+							<option value="manutencaoSistemDdeVendas">Manutenção Sistema de Vendas</option>
+							<option value="manutencaoSistemaERP">Manutenção Sistema ERP</option>
+							<option value="servidores">Servidores</option>
+							<option value="redes">Redes</option>
+							<option value="telefonia">Telefonia</option>
+							<option value="desktops">Desktops</option>
+							<c:forEach var="lista" items="${lista}">
+								<option value="${lista.id_Fila}">${lista.id_Chamado}</option>	
+							</c:forEach>
+						</select> 
+					</div>
+					</div>	
 				</div>
-			</div>
 			<div class="row" align="center">
 				<div class="table-responsive col-md-12">
 					<button type="submit" class="btn btn-primary" id="buscar" name="acao" value="Buscar">Listar Chamados</button>	
 			    </div>
-			 </div>
+			</div>
 		</form>
 	</div>
 
